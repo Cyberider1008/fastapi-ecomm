@@ -30,7 +30,7 @@ def create_admin(email: str, password: str, name: str = "Admin") -> None:
         existing = db.query(User).filter(User.email == email).first()
         if existing:
             if existing.is_admin:
-                print(f"❌ User with email '{email}' already exists and is already an admin.")
+                print(f"User with email '{email}' already exists and is already an admin.")
                 return
             else:
                 # Upgrade existing user to admin
@@ -52,14 +52,14 @@ def create_admin(email: str, password: str, name: str = "Admin") -> None:
         db.add(user)
         db.commit()
         db.refresh(user)
-        print(f"✅ Admin user created successfully!")
+        print(f" Admin user created successfully!")
         print(f"   Email: {email}")
         print(f"   Name: {name}")
         print(f"   ID: {user.id}")
         
     except Exception as e:
         db.rollback()
-        print(f"❌ Error creating admin user: {e}")
+        print(f" Error creating admin user: {e}")
         raise
     finally:
         db.close()
