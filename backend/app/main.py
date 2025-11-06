@@ -8,7 +8,7 @@ from .database import SessionLocal
 from .routers import auth as auth_router
 from .routers import users as users_router
 from .routers import admin as admin_router
-from .bootstrap import ensure_admin
+
 
 
 def create_app() -> FastAPI:
@@ -40,12 +40,7 @@ app = create_app()
 @app.on_event("startup")
 def on_startup() -> None:
     init_db()
-    # optional: bootstrap admin if env vars provided
-    db = SessionLocal()
-    try:
-        ensure_admin(db)
-    finally:
-        db.close()
+   
 
 @app.get("/")
 def root():

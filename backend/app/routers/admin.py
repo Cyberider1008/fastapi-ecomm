@@ -12,7 +12,11 @@ router = APIRouter()
 
 @router.get("/users", response_model=list[UserSafe])
 def list_users(db: Session = Depends(get_db), _: User = Depends(require_admin)):
-    return db.query(User).order_by(User.id.desc()).all()
+    return ( db.query(User)
+        .filter(User.is_admin == False)  # exclude admin users
+        .order_by(User.id.desc())
+        .all()
+    )
 
 
 @router.patch("/users/{user_id}/toggle-active", response_model=UserSafe)

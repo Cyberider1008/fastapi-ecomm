@@ -1,12 +1,4 @@
 #!/usr/bin/env python3
-"""
-Script to create an admin user for the FastAPI application.
-Usage:
-    python backend/create_admin.py <email> <password> [name]
-    
-Example:
-    python backend/create_admin.py admin@example.com secret123 "Admin User"
-"""
 
 import sys
 import os
